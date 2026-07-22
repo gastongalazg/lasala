@@ -1,0 +1,335 @@
+/* ============================================================
+   LA SALA — estilos
+   Línea DIY / flyer de recital: fondo oscuro, tipografía tipo
+   afiche, acentos de "cinta de embalaje". Prioridad: legibilidad
+   y uso fácil en mobile.
+   ============================================================ */
+
+:root {
+  --bg: #101010;
+  --bg-card: #1b1a17;
+  --bg-card-border: #322f28;
+  --text: #f3efe4;
+  --text-dim: #b4ada0;
+  --accent: #e63c33;      /* rojo punk — referencias */
+  --accent-2: #f2c53d;    /* amarillo ácido — riffs */
+  --tape: #ded8c6;
+  --focus: #7fd1e0;
+
+  --radius: 3px;
+  --max-width: 640px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse at top, rgba(230, 60, 51, 0.08), transparent 55%);
+  color: var(--text);
+  font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent-2);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ---------- header ---------- */
+
+.header {
+  padding: 2.75rem 1.25rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--bg-card-border);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.banda {
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.banda-sub {
+  color: var(--text-dim);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.titulo-principal {
+  position: relative;
+  display: inline-block;
+  margin: 0.2rem 0 0.5rem;
+  font-family: "Anton", "Archivo", sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.8rem, 14vw, 4.5rem);
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  color: var(--text);
+  text-shadow: 0.06em 0.06em 0 var(--accent);
+}
+
+.bajada {
+  margin: 0.75rem 0 0;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+/* cinta de embalaje decorativa */
+.tape {
+  position: absolute;
+  display: block;
+  background: var(--tape);
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(0, 0, 0, 0.06) 0px,
+    rgba(0, 0, 0, 0.06) 2px,
+    transparent 2px,
+    transparent 7px
+  );
+  opacity: 0.9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+.tape--titulo {
+  top: -0.9rem;
+  left: 50%;
+  width: 5.5rem;
+  height: 1.4rem;
+  transform: translateX(-50%) rotate(-3deg);
+}
+
+/* ---------- filtros ---------- */
+
+.main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filtro {
+  flex: 1 1 auto;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  border: 2px solid var(--bg-card-border);
+  border-radius: var(--radius);
+  color: var(--text-dim);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.filtro:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filtro:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.filtro--activo {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #191009;
+}
+
+/* ---------- estado vacío ---------- */
+
+.estado-vacio {
+  text-align: center;
+  color: var(--text-dim);
+  padding: 3rem 1rem;
+  border: 2px dashed var(--bg-card-border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+
+/* ---------- listado / tarjetas ---------- */
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.1rem 1.4rem;
+  transform: rotate(var(--rot, 0deg));
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.card .tape {
+  top: -0.7rem;
+  left: 1.4rem;
+  width: 3.2rem;
+  height: 1.1rem;
+  transform: rotate(-4deg);
+}
+
+.card--riff .tape {
+  left: auto;
+  right: 1.4rem;
+  transform: rotate(4deg);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card--referencia .badge {
+  background: rgba(230, 60, 51, 0.16);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.card--riff .badge {
+  background: rgba(242, 197, 61, 0.14);
+  color: var(--accent-2);
+  border: 1px solid var(--accent-2);
+}
+
+.fecha {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.card-titulo {
+  margin: 0 0 0.25rem;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+.tema {
+  margin: 0 0 0.85rem;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.nota {
+  margin: 0.9rem 0 0;
+  font-size: 0.92rem;
+  color: var(--text);
+  border-left: 3px solid var(--bg-card-border);
+  padding-left: 0.7rem;
+}
+
+.player-error {
+  color: var(--accent);
+  font-size: 0.85rem;
+  padding: 0.75rem;
+  background: rgba(230, 60, 51, 0.08);
+  border-radius: var(--radius);
+}
+
+/* ---------- reproductores embebidos ---------- */
+
+.player {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+}
+
+.player iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+.player--video {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 */
+  height: 0;
+}
+
+.player--video iframe {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.player--spotify iframe {
+  height: 152px;
+}
+
+.player--spotify-tall iframe {
+  height: 352px;
+}
+
+.player--drive iframe {
+  height: 170px;
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* respeta usuarios con preferencia de menos movimiento/contraste no aplica aquí,
+   pero mantenemos foco visible siempre */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
